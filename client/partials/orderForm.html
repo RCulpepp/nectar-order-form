@@ -1,0 +1,130 @@
+<div id="order-form">
+	<h2>Order Form</h2>
+	<form class='pure-form pure-form-aligned' id="form-page" ng-submit="newOrder()">
+		<fieldset ng-hide="page != 1" class='pure-g animate-show' id='order1'>
+			<h3 class='pure-u-1'>Order Information</h3>
+			<div class='pure-u-1'>
+				<div class='pure-control-group'>
+					<label for='product'>Product</label>
+					<select class='pure-input-1-4' name="product" ng-model="product">
+						<option ng-repeat="product in products" value="{{ product._id }}">{{ product.name }}</option>
+					</select>
+					<span class='error'>{{ _productErr }}</span>
+				</div>
+				<div class='pure-control-group'>
+					<label for='quantity'>Quantity</label>
+					<input class='pure-input-1-4' type="number" placeholder="Qty" name="quantity" ng-model="quantity" min="0">
+					<span class='error'>{{ quantityErr }}</span>
+				</div>
+				<div class='pure-control-group'>
+					<label for='first_name'>First Name</label>
+					<input class="pure-input-1-3" type="text" ng-model="first_name" name="first_name" placeholder="First Name">
+					<span class='error'>{{ first_nameErr }}</span>
+				</div>
+				<div class='pure-control-group'>
+					<label for='last_name'>Last Name</label>		
+					<input class="pure-input-1-3" type="text" ng-model="last_name" name="last_name" placeholder="Last Name">
+					<span class='error'>{{ last_nameErr }}</span>
+				</div>
+				<div class='pure-control-group'>
+					<label for='email'>Email</label>		
+					<input class="pure-input-1-3" type="email" ng-model="email" name="email" placeholder="Email">
+					<span class='error'>{{ emailErr }}</span>
+				</div>
+			</div>
+			<div class='pure-u-1'>
+				<a ng-click="moveForward()" class='pure-button' type='button'>Continue</a>
+			</div>
+		</fieldset>
+		<fieldset ng-hide="page != 2" class='pure-g animate-show' id='order2'>
+			<h3 class='pure-u-1'>Delivery Information</h3>
+			<p class='error pure-u-1'>{{ addrErr }}</p>
+			<div class='pure-u-1'>
+				<div class='pure-control-group'>
+					<label for="delivery_date">Delivery Date</label>
+					<input class='pure-input-1-3' type="text" name="delivery_date" id="date" ng-model='delivery_date'>
+					<span class='error'>{{ delivery_dateErr }}</span>
+				</div>
+				<div class='pure-control-group'>
+					<label for='street1'>Address 1</label>
+					<input class="pure-input-1-2" type="text" name="street1" ng-model="street1" placeholder="Address 1">
+					<span class='error'>{{ street1Err }}</span>
+				</div>
+				<div class='pure-control-group'>
+					<label for='street2' >Address 2</label>
+					<input class="pure-input-1-2" type="text" name="street2" ng-model="street2" placeholder="Address 2">
+				</div>
+				<div class='pure-control-group'>
+					<label for='city'>City</label>
+					<input class="pure-input-1-3" type="text" name="city" ng-model="city" placeholder="City">
+					<span class='error'>{{ cityErr }}</span>
+				</div>
+				<div class='pure-control-group'>
+					<label for='state'>State</label>
+					<input class='pure-input-1-4' type="text" name="state" ng-model="state" placeholder="State">
+					<span class='error'>{{ stateErr }}</span>
+				</div>
+				<div class='pure-control-group'>
+					<label for='zip'>Zip</label>
+					<input class='pure-input-1-4' type="text" name="zip" ng-model="zip" placeholder="Zip">
+					<span class='error'>{{ zipErr }}</span>
+					
+				</div>
+			</div>
+			<div class='pure-u-1'>
+				<a ng-click="moveBack()" class='pure-button back'>Back</a>
+				<a ng-click="moveForward()" class='pure-button continue'>Continue</a>
+			</div>
+		</fieldset>
+		<fieldset ng-hide="page != 3" class='pure-g animate-show' id='order3'>
+			<h3 class='pure-u-1'>Payment Information</h3>
+			<p class='error pure-u-1'>{{ cardDataErr }}</p>
+			<div class='pure-u-1'>
+				<div class='pure-control-group'>			
+					<label for='name'>Name</label>
+					<input type="text" name="name" ng-model="name" placeholder="Name">
+				</div>
+				<div class='pure-control-group'>
+					<label for='card'>Card #</label>
+					<input type="text" name="card" ng-model="card" placeholder="Card #">
+				</div>
+				<div class='pure-control-group'>
+					<label for='exp-month'>Exp. Month</label>
+					<select name="exp-month" ng-model="exp_month">
+						<option>01</option>
+						<option>02</option>
+						<option>03</option>
+						<option>04</option>
+						<option>05</option>
+						<option>06</option>
+						<option>07</option>
+						<option>08</option>
+						<option>09</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+					</select>
+				</div>
+				<div class='pure-control-group'>
+					<label for='exp-year'>Exp. Year</label>
+					<select name="exp-year" ng-model="exp_year">
+						<option>2016</option>
+						<option>2017</option>
+						<option>2018</option>
+						<option>2019</option>
+					</select>
+				</div>
+				<div class='pure-control-group'>
+					<label for="cvc">CVC</label>
+					<input type="text" name="cvc" ng-model="cvc" placeholder="CVC">
+				</div>
+
+			</div>
+			<div class='pure-u-1'>
+				<a ng-click="moveBack()" class='pure-button back'>Back</a>
+				<input type="submit" value='Place Order' class='pure-button pure-button-primary' ng-class="{'pure-button-disabled': !active}">
+				<img src="/img/ajax-loader.gif" ng-class="{active: !active}">
+			</div>
+		</fieldset>
+	</form>
+</div>

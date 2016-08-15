@@ -1,0 +1,180 @@
+ body { 
+  background: url(../img/cup-leaf-spring-leaves.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.input {
+	padding-left: 30px;
+}
+
+#wrapper{
+	margin: 0 auto;
+}
+
+#logo {
+	color:#FABF1F;
+	font-size: 48px;
+	font-family: 'Pacifico', cursive;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+	display: inline-block;
+	margin-left: 10px;
+}
+
+
+#navbar-menu {
+	list-style: none;
+	padding: 0;
+	font-size: 0;
+	vertical-align: center;
+	margin: 0;
+	border-radius: 0 0 5px 5px;
+	border-left: 1px solid #989898;
+	border-bottom: 1px solid #989898;
+}
+
+#navbar h3 a {
+	text-decoration: none;
+	padding-top: 0;
+}
+
+
+#navbar-menu li {
+	font-size: 18px;
+	box-sizing: border-box;
+	display: inline-block;
+	width: 20%;
+	height: 50px;
+	margin: 0;
+	padding: 10px 0 0 0;
+	text-align: center;
+	vertical-align: center;
+	align-content: center;
+}
+
+#navbar-menu li:hover {
+	background-color: #555555;
+}
+
+#navbar-menu li a {
+	color: white;
+}
+
+#navbar-menu li a:hover {
+	text-decoration: none;
+	
+}
+#navbar-menu li:last-child:hover {
+	background-color: inherit;
+	
+}
+
+.pure-button:hover {
+	text-decoration: none;
+}
+
+.btn-custom {
+	color: white;
+	background-color: #989898;
+}
+
+.btn-custom:hover{
+	background-color: #ffffff;
+	color: #989898;
+}
+
+#order-form {
+	background-color: rgba(255,255,255, .5);
+	padding: 10px;
+	text-align: center;
+	border-radius: 3px;
+}
+
+#order-form #form-page {
+	background-color: rgba(85,85,85, .8);
+}
+
+#order-form fieldset {
+	text-align: center;
+	border-radius: 3px;
+	margin: 0 auto;
+	min-height: 500px;
+}
+
+#order-form fieldset .pure-u-1 {
+	margin: 0 auto;
+}
+
+.pure-input-1-4 {
+	margin: 0 0 0 0;
+}
+
+.pure-button-primary {
+	background: rgb(8,191,217);
+}
+
+#navbar ul {
+	background-color: white;
+}
+
+#navbar {
+		padding-top:0;
+}
+
+#div {
+	margin: 0 auto;
+}
+
+.pure-control-group {
+	text-align: left;
+}
+
+.animate-show.ng-hide {
+	opacity: 0;
+}
+
+
+.animate-show.ng-hide-remove {
+ 	transition: 1s all;
+}
+
+.error{
+	color: #FABF1F;
+}
+
+label {
+	color: #ffffff;
+}
+
+.navbar-menu {
+	height: 50%;
+}
+
+.pure-button-disabled {
+	pointer-events: none;
+}
+
+img {
+	display: none;
+}
+
+.active {
+	display: inline-block;
+}
+
+.success {
+	color: rgb(250,191,31);
+	border-radius: 2px;
+	border: 2px solid rgb(250,191,31);
+	background-color: rgba(152,152,152,.8);
+	margin: 0 auto;
+}
+
+.pure-u-1 {
+	margin: 0 auto;
+}
+
+
+

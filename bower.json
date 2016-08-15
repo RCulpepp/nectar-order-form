@@ -1,0 +1,23 @@
+{
+  "name": "full_mean",
+  "authors": [
+    "Ryan Culpepper <ryan.culpepper@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "bootstrap-css": "^3.3.6",
+    "angular-animate": "^1.5.8"
+  }
+}

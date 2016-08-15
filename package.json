@@ -1,0 +1,23 @@
+{
+  "name": "full_mean",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "fs": "0.0.2",
+    "mongoose": "^4.5.5",
+    "path": "^0.12.7",
+    "stripe": "^4.9.0"
+  }
+}
