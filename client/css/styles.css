@@ -86,25 +86,30 @@
 }
 
 #order-form {
-	background-color: rgba(255,255,255, .5);
+	background-color: rgba(255,255,255, .6);
 	padding: 10px;
 	text-align: center;
 	border-radius: 3px;
 }
 
 #order-form #form-page {
-	background-color: rgba(85,85,85, .8);
+	background-color: rgba(85,85,85,.9);
+	border-radius: 5px;
+	width: 50%;
+	margin: 0 auto;
 }
 
 #order-form fieldset {
 	text-align: center;
 	border-radius: 3px;
 	margin: 0 auto;
-	min-height: 500px;
+	min-height: 350px;
+	padding: 10px;
 }
 
 #order-form fieldset .pure-u-1 {
-	margin: 0 auto;
+	margin: 10px auto;
+
 }
 
 .pure-input-1-4 {
@@ -172,8 +177,12 @@ img {
 	margin: 0 auto;
 }
 
-.pure-u-1 {
+fieldset {
 	margin: 0 auto;
+}
+
+h3 {
+	color: white;
 }
 
 

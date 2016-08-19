@@ -10,8 +10,9 @@ var stripe = require("stripe")(sensData.stripeTestKey);
 function Orders(){
 	//for admin to display all orders
 	this.index = function(req,res){
-		var orders = Order.find();
-		res.send(orders)
+		var orders = Order.find({}, function(err, orders){
+			res.send(orders);
+		});
 	}
 
 	this.distance = function(req,res){

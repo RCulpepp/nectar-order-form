@@ -3,9 +3,16 @@ myApp.factory('userFactory', ['$http', '$routeParams', function($http, $routePar
 	this.regisErrors = [];
 	this.loginErrors = [];
 	
-	this.login = (user_data, callback) => {
-		this.findUser(user_data.email, function(){
-
+	this.login = function(user, callback) => {
+		$http.post('/orders/admin', user_data, function(res){
+			if(error){
+				callback() //callback needs appropriate data from returned error.
+							// error represents an error with the request
+			} else if (res.data.user){
+				//What happens when the user information is correct?
+			} else {
+				//What happens when the user information is incorrect?
+			}
 		});
 	}
 	this.findUser = function(email, callback){

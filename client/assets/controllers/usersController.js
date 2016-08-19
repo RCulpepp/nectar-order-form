@@ -30,4 +30,12 @@ myApp.controller('usersController', ['$scope','userFactory', '$http', '$location
 		Stripe.card.createToken(card, stripeResponseHandler)
 
 	};
+
+	$scope.login = function(){
+		userFactory.login($scope.email, function(err){
+			if(err){
+				$scope.loginErr = err;
+			}
+		})
+	};
 }]);
