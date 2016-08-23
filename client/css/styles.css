@@ -24,7 +24,7 @@
 }
 
 
-#navbar-menu {
+#navbar-menu { 
 	list-style: none;
 	padding: 0;
 	font-size: 0;
@@ -46,11 +46,11 @@
 	box-sizing: border-box;
 	display: inline-block;
 	width: 20%;
-	height: 50px;
+/*	height: 50px;*/
 	margin: 0;
 	padding: 10px 0 0 0;
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 	align-content: center;
 }
 
@@ -94,8 +94,8 @@
 
 #order-form #form-page {
 	background-color: rgba(85,85,85,.9);
+	width:66%;
 	border-radius: 5px;
-	width: 50%;
 	margin: 0 auto;
 }
 
@@ -107,9 +107,13 @@
 	padding: 10px;
 }
 
-#order-form fieldset .pure-u-1 {
+#order-form fieldset .pure-u-1 .pure-control-group{
 	margin: 10px auto;
 
+}
+
+#time {
+	display: inline-block;
 }
 
 .pure-input-1-4 {
@@ -121,11 +125,11 @@
 }
 
 #navbar ul {
-	background-color: white;
+	background-color: rgba(152,152,152,.9);
 }
 
 #navbar {
-		padding-top:0;
+	padding-top:0;
 }
 
 #div {
@@ -154,6 +158,9 @@ label {
 }
 
 .navbar-menu {
+	border-radius: 0 0 5px 5px;
+	vertical-align: middle;
+	text-align: center;
 	height: 50%;
 }
 
@@ -185,5 +192,27 @@ h3 {
 	color: white;
 }
 
+#admin-login {
+	margin: 0 auto;
+}
 
+.pure-control-group label {
+	display: inline-block;
+}
 
+.btn-link {
+	color: #08BFD9;
+}
+
+fieldset p{
+	color: white;
+	font-family: 'Gudea', sans-serif;
+}
+
+.subhead {
+	color: white;
+	/*font-family: 'Average Sans Regular';*/
+	font-family: 'Gudea', sans-serif;
+	font-size: 2em;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}

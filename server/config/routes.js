@@ -14,7 +14,7 @@ module.exports = function(app){
 	app.post('/orders', orders.create);
 	app.get('/products', products.index);
 	app.post('/orders/distance', orders.distance);
-	// app.post('/orders/admin', order.login);
+	app.post('/orders/admin', users.login);
 	// app.get('/orders/:id', orders.show);
 	// app.put('/orders/:id', orders.update);
 	// app.delete('/orders/:id', orders.destroy);

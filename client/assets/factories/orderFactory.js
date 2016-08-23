@@ -41,5 +41,13 @@ myApp.factory('orderFactory', ['$http', '$routeParams', function($http, $routePa
 			callback(res.data.error)
 		});
 	}
+
+	this.saveEmail = function(email){
+		this.email = email;
+	}
+
+	this.getEmail = function(){
+		this.email ? this.email : '';
+	}
 	return this	
 }]);

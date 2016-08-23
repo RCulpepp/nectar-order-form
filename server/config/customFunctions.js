@@ -32,6 +32,7 @@ module.exports = {
 					console.log(info)
 					info = JSON.parse(info);
 					console.log(info)
+					//converting meters given from Distance Matrix to miles
 					if(info.rows[0].elements[0].distance.value * .000621371 <= 15){
 						console.log('close');
 						resolve();
@@ -47,7 +48,6 @@ module.exports = {
 			req.end();
 		});
 		//send request to API
-		// closePromise();
 	},
 	//handles the response from Mongo when a result is found and would result in a go ahead response to client
 	posErrorHandler: function(error, record={}, callback){

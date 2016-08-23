@@ -11,13 +11,13 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 			}
 		}
 		var errors = 0;
-		if (pageNum == 1){
+		if (pageNum == 2){
 			var fields = ["first_name", "last_name", "email", "product", "quantity"];
 			fields.forEach(blankFields);
-		} else if (pageNum == 2){
+		} else if (pageNum == 3){
 			var fields = ["delivery_date", "street1","city","state","zip"];
 			fields.forEach(blankFields);
-		} else if (pageNum == 3){
+		} else if (pageNum == 4){
 			var fields = ["card", "exp_month", "exp_year", "cvc"];
 			fields.forEach(blankFields);
 		}
@@ -26,26 +26,49 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 		}
 		return true;
 	};
-
+	//get all poducts currently available
 	productFactory.index(function(products){
 		$scope.products = products;
 	});
 
+	//set order user's email for success pagel
+	$scope.email = orderFactory.getEmail();
+	//set today's date
+	$scope.today = function(){
+		$scope.todayDate = new Date(moment().add(1,'days'));
+	}
+	$scope.today();
+
+	//options for datepicker
+	$scope.dateOptions = {
+		minDate: $scope.todayDate,
+		showWeeks: false
+	}
+	$scope.opened = false;
+	$scope.open = function(){
+		$scope.opened = true;
+	}
+
+	//set and change pages for order form
 	$scope.page = 1;
 	$scope.active = true;
 
 	$scope.moveForward = function(){
-		var move_on = checkFields($scope.page)
+		var move_on = checkFields($scope.page);
 		if(move_on){
 			$scope.page++;
 		} 
 	}
+	//options for timepicker
+	$scope.max = moment().hour(17);
+	$scope.min = moment().hour(9);
+
 
 	$scope.moveBack = function(){
 		$scope.page--
 	}
 	
-	// $scope.orders = orderFactory.index();
+	//create a new order
 	$scope.newOrder = function(){
 		$scope.active = false;
 		data = {
@@ -82,7 +105,7 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 					$scope.active = true;
 				}
 			} else {
-				console.log('made it back to controller going to view!')
+				orderFactory.saveEmail(email); 
 				$location.url('orders/success')
 			}
 		})

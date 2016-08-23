@@ -1,14 +1,18 @@
-var myApp = angular.module('myApp',['ngRoute', 'ngAnimate']);
+var myApp = angular.module('myApp',['ngRoute', 'ngAnimate', 'ui.bootstrap']);
 myApp.config(function($routeProvider){
 	$routeProvider
-	.when('/', {
-		templateUrl: './partials/index.html',
-		controller: 'indexController'
-	})
-	.when('/register', {
-		templateUrl: './partials/form.html',
+	// .when('/', {
+	// 	templateUrl: './partials/index.html',
+	// 	controller: 'indexController'
+	// })
+	// .when('/register', {
+	// 	templateUrl: './partials/form.html',
+	// 	controller: 'usersController'
+	// })
+	.when('/orders', {
+		templateUrl: './partials/admin.html',
 		controller: 'usersController'
-	})
+	})      
 	.when('/orders/new', {
 		templateUrl: './partials/orderForm.html',
 		controller: 'ordersController'
@@ -17,6 +21,11 @@ myApp.config(function($routeProvider){
 		templateUrl: './partials/orderSuccess.html',
 		controller: 'ordersController'
 	})
+	.when('/sessions/new', {
+		templateUrl: './partials/admin.html',
+		controller: 'usersController'
+	})
+	
 	// .when('/edit/:id', {
 	// 	templateUrl: './partials/edit.html',
 	// 	controller: 'editController',
@@ -26,6 +35,6 @@ myApp.config(function($routeProvider){
 	// 	controller: 'showController'
 	// })
 	.otherwise({
-		redirectTo:'/'
+		redirectTo:'/orders/new'
 	})
 });

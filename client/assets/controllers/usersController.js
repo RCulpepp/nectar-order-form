@@ -20,19 +20,13 @@ myApp.controller('usersController', ['$scope','userFactory', '$http', '$location
 			});
 			user.pass
 		}
-	$scope.pay = function(){
-		var card = {
-			number: $scope.number,
-			cvc: $scope.cvc,
-			exp_month: $scope.expMonth,
-			exp_year: $scope.expYear
-		}
-		Stripe.card.createToken(card, stripeResponseHandler)
-
-	};
 
 	$scope.login = function(){
-		userFactory.login($scope.email, function(err){
+		var userData = {
+			email: $scope.email,
+			password: $scope.password
+		}
+		userFactory.login(userData, function(err){
 			if(err){
 				$scope.loginErr = err;
 			}

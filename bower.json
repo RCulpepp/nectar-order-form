@@ -18,6 +18,7 @@
     "angular": "^1.5.7",
     "angular-route": "^1.5.7",
     "bootstrap-css": "^3.3.6",
-    "angular-animate": "^1.5.8"
+    "angular-animate": "^1.5.8",
+    "moment": "^2.14.1"
   }
 }

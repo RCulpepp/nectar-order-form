@@ -30,8 +30,6 @@ function Orders(){
 
 	//submit form to this method
 	this.create = function(req,res){
-
-		console.log(req.body)
 		var order = {
 				first_name: req.body.first_name,
 				last_name: req.body.last_name,
@@ -41,41 +39,37 @@ function Orders(){
 				quantity: req.body.quantity
 			}
 
-			Product.findOne({_id: order._product}, function(err, product){
-				//process charge
-				var charge = stripe.charges.create({
-					amount: order.quantity * product.unit_price,
-					currency: 'usd',
-					source: req.body.token,
-					description: "Nectar Food Delivery"
-					}, function(err, charge){
-						if(err){
-							console.log(err)
-							res.send(err);
-						} else {
-							//save order in DB once stripe is successful
-							order._stripe_id = charge.id;
-							order = new Order(order);
-							//create address once order is created
-							address = new Address(req.body.address);
-							order.address.push(address);
-							order.save(function(err){
-								if(err){
-									res.send(err.errors);
-								} else {
-									console.log("Order saved!")
-									res.send({message:"Order saved"})
-								};
-							
-							});	
-						};
-					});
+			Product.findOne({_id: order._product}, function(error, product){
+				if(error){
+					res.send(error)
+				} else {
+					//process charge
+					var charge = stripe.charges.create({
+						amount: order.quantity * product.unit_price,
+						currency: 'usd',
+						source: req.body.token,
+						description: "Nectar Food Delivery"
+						}, function(err, charge){
+							if(err){
+								res.send(err);
+							} else {
+								//save order in DB once stripe is successful
+								order._stripe_id = charge.id;
+								order = new Order(order);
+								//create address once order is created
+								address = new Address(req.body.address);
+								order.address.push(address);
+								order.save(function(err){
+									if(err){
+										res.send(err.errors);
+									} else {
+										res.send({message:"Order saved"})
+									};
+								});	
+							};
+						});
+				}
 			});
-
-		
-		//package information to send
-
-
 	};
 
 	this.update = function(req,res){
