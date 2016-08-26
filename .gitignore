@@ -1,0 +1,5 @@
+server/config/sensitive.js
+server/config/mongoose.js
+/bower_components
+Nectar.pem
+/node_modules
