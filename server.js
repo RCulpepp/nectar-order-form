@@ -17,7 +17,7 @@ app.use(expressSession({
 var mongoose = require('./server/config/mongoose.js');
 require("./server/config/routes.js")(app);
 
-var admin_dir = '/Users/ryanculpepper/Desktop/nectar_landing_page/admin_page/';
+var admin_dir = '/home/ubuntu/nectar_admin';
 var user_client = express.static(path.join(__dirname, 'client'));
 var user_bower = express.static(path.join(__dirname, 'bower_components'));
 var admin_client = express.static(path.join(admin_dir, 'client'));

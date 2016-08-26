@@ -16,17 +16,17 @@ myApp.factory('orderFactory', ['$http', '$routeParams', function($http, $routePa
 		$http.post('/orders/distance', orderData.address).then(function(res){
 			if(res.statusText == "Continue"){
 			// if(true){
-				// //pre-charge card validation
-				// var card = Stripe.card.validateCardNumber(orderData.cardData.number);
-				// var expiry = Stripe.card.validateExpiry(orderData.cardData.exp_month, orderData.cardData.exp_year);
-				// var cvc = Stripe.card.validateCVC(orderData.cardData.cvc);
+				//pre-charge card validation
+				var card = Stripe.card.validateCardNumber(orderData.cardData.number);
+				var expiry = Stripe.card.validateExpiry(orderData.cardData.exp_month, orderData.cardData.exp_year);
+				var cvc = Stripe.card.validateCVC(orderData.cardData.cvc);
 
-				// //process token if all are valid
-				// if (card && expiry && cvc){
-				// 	Stripe.card.createToken(orderData.cardData, function(status, res){
-				// 		if(!res.status){
-				// 			orderData.token = res.id
-				// 			delete orderData.cardData;
+				//process token if all are valid
+				if (card && expiry && cvc){
+					Stripe.card.createToken(orderData.cardData, function(status, res){
+						if(!res.status){
+							orderData.token = res.id
+							delete orderData.cardData;
 							$http.post('/orders', orderData).then(function(res){
 								console.log("Success on order creation request" + res);
 								callback(res);
@@ -34,19 +34,18 @@ myApp.factory('orderFactory', ['$http', '$routeParams', function($http, $routePa
 								console.log("Failure on order creation request" + res);
 								callback(res)
 							});
-				// 		};
-				// 	});
-				// } else {
-				// 	callback({err: { card: { message: "The card information you entered is not valid."}}});
-				// }
+						};
+					});
+				} else {
+					callback({err: { card: { message: "The card information you entered is not valid."}}});
+				}
 			} else {
 				callback({err: { addr: {message: "Unfortunately the address you entered is too far from us."}}});
 			}
-		}
-	// 	, function(res){
-	// 		callback(res.data.error)
-	// 	});
-	// }
+		}, function(res){
+			callback(res.data.error)
+		});
+	}
 
 	this.saveEmail = function(email){
 		this.email = email;

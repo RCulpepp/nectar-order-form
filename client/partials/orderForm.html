@@ -95,11 +95,10 @@
 			</div>
 			<div class='pure-u-1'>
 				<a ng-click="moveBack()" class='pure-button back'>Back</a>
-				<button type="button" value='Place Order' class='pure-button pure-button-primary' ng-class="{'pure-button-disabled': !active}" ng-click='newOrder()'>Submit</button>
-				<img src="/img/ajax-loader.gif" ng-class="{active: !active}">
+				<a ng-click="moveForward()" class='pure-button' type='button'>Continue</a>
 			</div>
 		</fieldset>
-<!-- 		<fieldset ng-hide="page != 4" class='pure-g animate-show' id='order4'>
+		<fieldset ng-hide="page != 4" class='pure-g animate-show' id='order4'>
 			<h3 class='pure-u-1'>Payment Information</h3>
 			<p class='error pure-u-1'>{{ cardDataErr }}</p>
 			<div class='pure-u-1'>
@@ -140,9 +139,10 @@
 			</div>
 			<div class='pure-u-1'>
 				<a ng-click="moveBack()" class='pure-button back'>Back</a>
-				
+				<button type="button" value='Place Order' class='pure-button pure-button-primary' ng-class="{'pure-button-disabled': !active}" ng-click='newOrder()'>Submit</button>
+				<img src="/img/ajax-loader.gif" ng-class="{active: !active}">
 			</div>
-		</fieldset> -->
+		</fieldset>
 	</form>
 	<div class='pure-u-1'>
 		<a href='http://admin.nectardelivers.com:5000'>Admin</a>

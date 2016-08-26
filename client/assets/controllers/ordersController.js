@@ -18,10 +18,10 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 			var fields = ["delivery_date", "street1","city","state","zip"];
 			fields.forEach(blankFields);
 		} 
-		// else if (pageNum == 4){
-		// 	var fields = ["card", "exp_month", "exp_year", "cvc"];
-		// 	fields.forEach(blankFields);
-		// }
+		else if (pageNum == 4){
+			var fields = ["card", "exp_month", "exp_year", "cvc"];
+			fields.forEach(blankFields);
+		}
 		if(errors){
 			return false;
 		}
@@ -85,13 +85,13 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 				city: $scope.city,
 				state: $scope.state,
 				zip: $scope.zip
+			},
+			cardData: {
+				number: $scope.card,
+				exp_month: $scope.exp_month,
+				exp_year: $scope.exp_year,
+				cvc: $scope.cvc
 			}
-			// cardData: {
-			// 	number: $scope.card,
-			// 	exp_month: $scope.exp_month,
-			// 	exp_year: $scope.exp_year,
-			// 	cvc: $scope.cvc
-			// }
 		}
 		orderFactory.newOrder(data, function(error){
 			if(error.err){
