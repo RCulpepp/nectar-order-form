@@ -56,17 +56,17 @@ function Orders(){
 						if (err) return err
 					});
 					//process charge
-					// var charge = stripe.charges.create({
-					// 	amount: order.quantity * product.unit_price,
-					// 	currency: 'usd',
-					// 	source: req.body.token,
-					// 	description: "Nectar Food Delivery"
-					// 	}, function(err, charge){
-					// 		if(err){
-					// 			res.send(err);
-					// 		} else {
+					var charge = stripe.charges.create({
+						amount: order.quantity * product.unit_price,
+						currency: 'usd',
+						source: req.body.token,
+						description: "Nectar Food Delivery"
+						}, function(err, charge){
+							if(err){
+								res.send(err);
+							} else {
 								//save order in DB once stripe is successful
-								// order._stripe_id = charge.id;
+								order._stripe_id = charge.id;
 								order = new Order(order);
 								//create address once order is created
 								address = new Address(req.body.address);
@@ -81,8 +81,8 @@ function Orders(){
 							};
 						});
 				}
-	// 		});
-	// };
+			});
+	};
 
 	this.update = function(req,res){
 		order = {

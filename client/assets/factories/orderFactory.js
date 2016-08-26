@@ -16,7 +16,7 @@ myApp.factory('orderFactory', ['$http', '$routeParams', function($http, $routePa
 		$http.post('/orders/distance', orderData.address).then(function(res){
 			if(res.statusText == "Continue"){
 			// if(true){
-				// //pre-charge card validation
+				//pre-charge card validation
 				// var card = Stripe.card.validateCardNumber(orderData.cardData.number);
 				// var expiry = Stripe.card.validateExpiry(orderData.cardData.exp_month, orderData.cardData.exp_year);
 				// var cvc = Stripe.card.validateCVC(orderData.cardData.cvc);
@@ -34,19 +34,18 @@ myApp.factory('orderFactory', ['$http', '$routeParams', function($http, $routePa
 								console.log("Failure on order creation request" + res);
 								callback(res)
 							});
-				// 		};
-				// 	});
+					// 	};
+					// });
 				// } else {
 				// 	callback({err: { card: { message: "The card information you entered is not valid."}}});
 				// }
 			} else {
 				callback({err: { addr: {message: "Unfortunately the address you entered is too far from us."}}});
 			}
-		}
-	// 	, function(res){
-	// 		callback(res.data.error)
-	// 	});
-	// }
+		}, function(res){
+			callback(res.data.error)
+		});
+	}
 
 	this.saveEmail = function(email){
 		this.email = email;

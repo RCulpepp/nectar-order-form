@@ -3,3 +3,5 @@ server/config/mongoose.js
 /bower_components
 Nectar.pem
 /node_modules
+/bower_components/
+/node_modules
