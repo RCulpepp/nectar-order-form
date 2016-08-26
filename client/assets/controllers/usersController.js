@@ -29,6 +29,8 @@ myApp.controller('usersController', ['$scope','userFactory', '$http', '$location
 		userFactory.login(userData, function(err){
 			if(err){
 				$scope.loginErr = err;
+			} else {
+				$location.url('/orders/dashboard')
 			}
 		})
 	};

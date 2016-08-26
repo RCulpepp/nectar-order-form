@@ -6,6 +6,12 @@
   background-size: cover;
 }
 
+@media only screen and (max-width : 1125px) {
+    #header {
+        display: none;
+    }
+}
+
 .input {
 	padding-left: 30px;
 }
@@ -144,7 +150,6 @@
 	opacity: 0;
 }
 
-
 .animate-show.ng-hide-remove {
  	transition: 1s all;
 }
@@ -213,6 +218,15 @@ fieldset p{
 	color: white;
 	/*font-family: 'Average Sans Regular';*/
 	font-family: 'Gudea', sans-serif;
-	font-size: 2em;
+	font-size: 1.5em;
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.pure-table {
+	background-color: #989898;
+	border-radius: 5px;
+}
+
+table:nth-child(1){
+	background: #555555;
 }

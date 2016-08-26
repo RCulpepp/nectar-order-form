@@ -1,16 +1,18 @@
 myApp.factory('userFactory', ['$http', '$routeParams', function($http, $routeParams){
-	this.user = {};
+	this.user;
 	this.regisErrors = [];
 	this.loginErrors = [];
-	
 	this.login = function(user, callback){
-		$http.post('/orders/admin', user, function(res){
+		$http.post('/orders/admin', user).then(function(res){
 			if(res.data.error){
-				callback(res.data.error) //callback needs appropriate data from returned error.
-							// error represents an error with the request
+				console.log('error!');
+				callback(res.data.error);
 			} else if (res.data.user){
-				callback()
+				console.log(res.data)
+				this.user = res.data.user;
+				callback();
 			} else {
+				console.log('failed')
 				callback("The information you entered does not match our records.")
 			}
 		});

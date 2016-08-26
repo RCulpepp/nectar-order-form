@@ -7,7 +7,7 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 				$scope[errField] = "Missing";
 				errors++;
 			} else {
-				$scope[errField] = ''
+				$scope[errField] = '';
 			}
 		}
 		var errors = 0;
@@ -17,10 +17,11 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 		} else if (pageNum == 3){
 			var fields = ["delivery_date", "street1","city","state","zip"];
 			fields.forEach(blankFields);
-		} else if (pageNum == 4){
-			var fields = ["card", "exp_month", "exp_year", "cvc"];
-			fields.forEach(blankFields);
-		}
+		} 
+		// else if (pageNum == 4){
+		// 	var fields = ["card", "exp_month", "exp_year", "cvc"];
+		// 	fields.forEach(blankFields);
+		// }
 		if(errors){
 			return false;
 		}
@@ -31,8 +32,9 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 		$scope.products = products;
 	});
 
-	//set order user's email for success pagel
+	//set order user's email for success page
 	$scope.email = orderFactory.getEmail();
+
 	//set today's date
 	$scope.today = function(){
 		$scope.todayDate = new Date(moment().add(1,'days'));
@@ -43,10 +45,6 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 	$scope.dateOptions = {
 		minDate: $scope.todayDate,
 		showWeeks: false
-	}
-	$scope.opened = false;
-	$scope.open = function(){
-		$scope.opened = true;
 	}
 
 	//set and change pages for order form
@@ -59,15 +57,17 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 			$scope.page++;
 		} 
 	}
-	//options for timepicker
-	$scope.max = moment().hour(17);
-	$scope.min = moment().hour(9);
-
 
 	$scope.moveBack = function(){
 		$scope.page--
 	}
-	
+
+	//show datepicker
+	$scope.opened = false;
+	$scope.open = function(){
+		$scope.opened = true;
+	}
+
 	//create a new order
 	$scope.newOrder = function(){
 		$scope.active = false;
@@ -77,6 +77,7 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 			receipt_email: $scope.email,
 			_product: $scope.product,
 			delivery_date: $scope.delivery_date,
+			delivery_time: $scope.delivery_time,
 			quantity: $scope.quantity,
 			address: {
 				street1: $scope.street1,
@@ -84,30 +85,34 @@ myApp.controller('ordersController', ['$scope', 'orderFactory', 'productFactory'
 				city: $scope.city,
 				state: $scope.state,
 				zip: $scope.zip
-			},
-			cardData: {
-				number: $scope.card,
-				exp_month: $scope.exp_month,
-				exp_year: $scope.exp_year,
-				cvc: $scope.cvc
 			}
+			// cardData: {
+			// 	number: $scope.card,
+			// 	exp_month: $scope.exp_month,
+			// 	exp_year: $scope.exp_year,
+			// 	cvc: $scope.cvc
+			// }
 		}
-		
 		orderFactory.newOrder(data, function(error){
 			if(error.err){
 				if(error.err.card){
 					$scope.cardDataErr = error.err.card.message;
-					$scope.page = 3;
+					$scope.page = 4;
 					$scope.active = true;
 				} else if(error.err.addr){
 					$scope.addrErr = error.err.addr.message;
-					$scope.page = 2;
+					$scope.page = 3;
 					$scope.active = true;
 				}
 			} else {
-				orderFactory.saveEmail(email); 
-				$location.url('orders/success')
+				console.log($scope.email);
+				orderFactory.saveEmail($scope.email); 
+				$location.url('orders/success');
+				$scope.email = orderFactory.getEmail();
 			}
-		})
+		});
 	}
+	// $scope.getEmail = function(){
+	// 	$scope.email = orderFactory.getEmail();
+	// }
 }]);

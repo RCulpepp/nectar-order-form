@@ -32,6 +32,7 @@ var OrderSchema = new mongoose.Schema({
 	receipt_email: String,
 	address: [AddressSchema],
 	delivery_date: {type: Date, required: [true, "Please let us know when you'd like your delivery."]},
+	delivery_time: {type: String, required: true},
 	_product: {type: mongoose.Schema.Types.ObjectId, ref: "Product"},
 	quantity: {type: Number, required: true},
 	_stripe_id: String

@@ -2,7 +2,7 @@
 	<form class='pure-form pure-form-aligned pure-u-1-2 pure-u-sm-3-4' id="form-page">
 		<fieldset ng-hide="page != 1" class='pure-g animate-show' id='order1'>
 			<h3 class='pure-u-1 subhead'>Give our produce a try!</h3>
-			<p class='pure-u-1'>As we're growing, we have produce to share.  Would you like to try some out?  We're currently growing Basil.</p>
+			<p class='pure-u-1'>As we're growing, we have produce to share.  Would you like to try some out?  We're currently growing Basil.  Basil is 2.99 per ounce.  LIMITED SUPPLY</p>
 			<div class='pure-u-1'>
 				<a ng-click="moveForward()" class='pure-button' type='button'>Continue</a>
 			</div>
@@ -13,7 +13,7 @@
 				<div class='pure-control-group'>
 					<label for='product'>Product</label>
 					<select  name="product" ng-model="product">
-						<option ng-repeat="product in products" value="{{ product._id }}">{{ product.name }}</option>
+						<option ng-repeat="product in products" value="{{ product._id }}">{{ product.name }} - {{ product.unit_price/100 }}/oz.</option>
 					</select>
 					<span class='error'>{{ _productErr }}</span>
 				</div>
@@ -32,10 +32,10 @@
 					<input type="text" ng-model="last_name" name="last_name" placeholder="Last Name">
 					<span class='error'>{{ last_nameErr }}</span>
 				</div>
-				<div class='pure-control-group'>
-					<label for='email'>Email</label>
-					<input type="email" ng-model="email" name="email" placeholder="Email">
-					<span class='error'>{{ emailErr }}</span>
+				<div class='pure-control-group pure-g'>
+					<label class='pure-sm-u-1 pure-md-u-2-5 pure-lg-u-2-3' for='email'>Email</label>
+					<input class='pure-sm-u-1 pure-md-u-3-5 pure-lg-u-2-5' type="email" ng-model="email" name="email" placeholder="Email">
+					<span class='error pure-u-1'>{{ emailErr }}</span>
 				</div>
 			</div>
 			<div class='pure-u-1'>
@@ -95,10 +95,11 @@
 			</div>
 			<div class='pure-u-1'>
 				<a ng-click="moveBack()" class='pure-button back'>Back</a>
-				<a ng-click="moveForward()" class='pure-button continue'>Continue</a>
+				<button type="button" value='Place Order' class='pure-button pure-button-primary' ng-class="{'pure-button-disabled': !active}" ng-click='newOrder()'>Submit</button>
+				<img src="/img/ajax-loader.gif" ng-class="{active: !active}">
 			</div>
 		</fieldset>
-		<fieldset ng-hide="page != 4" class='pure-g animate-show' id='order4'>
+<!-- 		<fieldset ng-hide="page != 4" class='pure-g animate-show' id='order4'>
 			<h3 class='pure-u-1'>Payment Information</h3>
 			<p class='error pure-u-1'>{{ cardDataErr }}</p>
 			<div class='pure-u-1'>
@@ -136,13 +137,14 @@
 					<label for="cvc">CVC</label>
 					<input type="text" name="cvc" ng-model="cvc" placeholder="CVC">
 				</div>
-
 			</div>
 			<div class='pure-u-1'>
 				<a ng-click="moveBack()" class='pure-button back'>Back</a>
-				<button type="button" value='Place Order' class='pure-button pure-button-primary' ng-class="{'pure-button-disabled': !active}" ng-click='newOrder()'>Submit</button>
-				<img src="/img/ajax-loader.gif" ng-class="{active: !active}">
+				
 			</div>
-		</fieldset>
+		</fieldset> -->
 	</form>
+	<div class='pure-u-1'>
+		<a href='http://admin.nectardelivers.com:5000'>Admin</a>
+	</div>
 </div>

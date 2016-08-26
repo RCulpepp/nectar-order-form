@@ -17,10 +17,25 @@ app.use(expressSession({
 var mongoose = require('./server/config/mongoose.js');
 require("./server/config/routes.js")(app);
 
+var admin_dir = '/Users/ryanculpepper/Desktop/nectar_landing_page/admin_page/';
+var user_client = express.static(path.join(__dirname, 'client'));
+var user_bower = express.static(path.join(__dirname, 'bower_components'));
+var admin_client = express.static(path.join(admin_dir, 'client'));
+var admin_bower = express.static(path.join(admin_dir, 'bower_components'));
 
-app.use(express.static(path.join(__dirname, 'client')));
-app.use(express.static(path.join(__dirname, 'bower_components')));
-
+app.use(function(req, res, next) {
+	if(!req.hostname.includes('admin')) {
+		user_client(req,res, function(){
+			user_bower(req,res,next);
+		})
+	} else if (req.hostname == "admin.nectardelivers.com") {
+		admin_client(req,res, function(){
+			admin_bower(req,res,next);
+		})
+	} else {
+		next();
+	}
+})
 
 app.listen(5000, function(){
 	console.log('Listening on port 5000');

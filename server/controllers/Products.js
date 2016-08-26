@@ -13,6 +13,18 @@ function Products(){
 		
 	}
 
+	this.create = function(req,res){
+		console.log(req.body)
+		Product.create(req.body, function(err){
+			console.log(err)
+			if (err){
+				res.send({errors: err});
+			} else {
+				res.send({status: 'Continue'})
+			}
+		});
+	}
+
 
 }
 

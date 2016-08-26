@@ -25,6 +25,9 @@ myApp.config(function($routeProvider){
 		templateUrl: './partials/admin.html',
 		controller: 'usersController'
 	})
+	.when('/orders/dashboard', {
+		templateUrl: './partials/dashboard.html'
+	})
 	
 	// .when('/edit/:id', {
 	// 	templateUrl: './partials/edit.html',

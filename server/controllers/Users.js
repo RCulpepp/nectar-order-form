@@ -2,11 +2,25 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var crypto = require('crypto');
 function Users(){
-
-	//get all users
-	this.index = function(req,res){
+	this.check = function(req,res){
+		console.log(req.session._id);
+		if(req.session._id){
+			res.send({user: {id: req.session._id, name: req.session.name}});
+		} else {
+			res.send({signedIn: false});
+		}
 
 	}
+	//get all users
+	this.index = function(req,res){
+		User.find({}, function(err, users) {
+			if(err){
+				res.send(err)
+			} else {
+				res.send(users)
+			}
+		});
+	}	
 
 	//make a new user and log them in
 	this.create = function(req,res){
@@ -58,22 +72,22 @@ function Users(){
 				res.send(err.validation);
 				return;
 			} else if(!user){
-				res.send({email: {message: 'The email address you entered is not in our database.'}});
+				res.send({errors: {email: {message: 'The email address you entered is not in our database.'}}});
 			} else if(typeof(user.password) == 'string'){
 				var input_pass = crypto.createHmac('sha256', user.pw_salt).update(req.body.password).digest('hex');
 				if (input_pass == user.password){
 					req.session._id = user._id
 					req.session.name = user.name;
-					res.send(user._id);
+					res.send({user: true})  
 				} else {
 					res.send({errors: {password: {message: 'The password you entered does not match our records.'}}});
-				};
+				}
 			}
 		});
-	};
+	}
 
-	
-
-
+	this.logout = function(req,res){
+		req.session.destroy();
+	}
 }
-module.exports = new Users
+module.exports = new Users;

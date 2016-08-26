@@ -11,7 +11,13 @@ function Orders(){
 	//for admin to display all orders
 	this.index = function(req,res){
 		var orders = Order.find({}, function(err, orders){
-			res.send(orders);
+			console.log(err)
+			console.log(orders)
+			if(err){
+				res.send(err.errors)
+			} else {
+				res.send(orders);
+			}
 		});
 	}
 
@@ -36,25 +42,31 @@ function Orders(){
 				receipt_email: req.body.receipt_email,
 				_product: req.body._product,
 				delivery_date: req.body.delivery_date,
+				delivery_time: req.body.delivery_time,
 				quantity: req.body.quantity
 			}
 
 			Product.findOne({_id: order._product}, function(error, product){
+				console.log(error)
 				if(error){
 					res.send(error)
 				} else {
+					product.unit_qty -= order.quantity;
+					product.save(function(err){
+						if (err) return err
+					});
 					//process charge
-					var charge = stripe.charges.create({
-						amount: order.quantity * product.unit_price,
-						currency: 'usd',
-						source: req.body.token,
-						description: "Nectar Food Delivery"
-						}, function(err, charge){
-							if(err){
-								res.send(err);
-							} else {
+					// var charge = stripe.charges.create({
+					// 	amount: order.quantity * product.unit_price,
+					// 	currency: 'usd',
+					// 	source: req.body.token,
+					// 	description: "Nectar Food Delivery"
+					// 	}, function(err, charge){
+					// 		if(err){
+					// 			res.send(err);
+					// 		} else {
 								//save order in DB once stripe is successful
-								order._stripe_id = charge.id;
+								// order._stripe_id = charge.id;
 								order = new Order(order);
 								//create address once order is created
 								address = new Address(req.body.address);
@@ -69,8 +81,8 @@ function Orders(){
 							};
 						});
 				}
-			});
-	};
+	// 		});
+	// };
 
 	this.update = function(req,res){
 		order = {
