@@ -13,7 +13,7 @@
 				<div class='pure-control-group'>
 					<label for='product'>Product</label>
 					<select  name="product" ng-model="product">
-						<option ng-repeat="product in products" value="{{ product._id }}">{{ product.name }} - {{ product.unit_price/100 }}/oz.</option>
+						<option ng-repeat="product in products" ng-if="product.unit_qty > 0" value="{{ product._id }}">{{ product.name }} - {{ product.unit_price/100 }}/oz.</option>
 					</select>
 					<span class='error'>{{ _productErr }}</span>
 				</div>
